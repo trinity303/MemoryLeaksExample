@@ -17,11 +17,11 @@ class User private constructor(
             sInstance = User(contextWrapper)
         }
 
-        val instance: User?
+        val instance: User
             get() = if (sInstance == null) {
                 throw IllegalArgumentException("User cannot be null")
             } else {
-                sInstance
+                sInstance!!
             }
     }
 }
