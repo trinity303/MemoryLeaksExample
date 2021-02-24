@@ -11,7 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kz.kolesateam.memoryleaksexample.R
 import kz.kolesateam.memoryleaksexample.common.broadcast.MyReceiver
+import kz.kolesateam.memoryleaksexample.common.context.ContextWrapper
+import kz.kolesateam.memoryleaksexample.common.context.DefaultContextWrapper
 import kz.kolesateam.memoryleaksexample.common.data.Response
+import kz.kolesateam.memoryleaksexample.common.user.User
 import kz.kolesateam.memoryleaksexample.details.data.DetailsRepository
 import kz.kolesateam.memoryleaksexample.details.model.Details
 import java.lang.Exception
@@ -27,6 +30,8 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
     private lateinit var surnameTextView: TextView
     private lateinit var idTextView: TextView
 
+    private lateinit var user: User
+
     private val detailsRepository: DetailsRepository = DetailsRepository()
 
 
@@ -34,7 +39,12 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         super.onCreate(savedInstanceState)
         broadcastReceiver = MyReceiver()
 
+        val contextWrapper: ContextWrapper = DefaultContextWrapper(this)
+        User.createInstance(contextWrapper)
+        user = User.instance
+
         initViews()
+        setName()
 
         DetailsAsyncTask().execute()
     }
@@ -54,8 +64,11 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         idTextView = findViewById(R.id.activity_details_id)
     }
 
+    private fun setName() {
+        nameTextView.text = user.userName
+    }
+
     private fun showData(details: Details) {
-        nameTextView.text = details.name
         surnameTextView.text = details.surname
         idTextView.text = String.format(ID_FORMAT, details.id)
     }
