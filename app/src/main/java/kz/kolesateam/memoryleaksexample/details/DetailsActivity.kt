@@ -1,6 +1,7 @@
 package kz.kolesateam.memoryleaksexample.details
 
 import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.IntentFilter
 import android.os.AsyncTask
 import android.os.Bundle
@@ -47,6 +48,10 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         setName()
 
         DetailsAsyncTask().execute()
+
+        if (savedInstanceState == null) {
+            InitNotification().initialize(applicationContext)
+        }
     }
 
     override fun onStart() {
@@ -103,6 +108,20 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
                 is Response.Error -> showError(result.error)
             }
 
+        }
+    }
+
+    inner class InitNotification {
+
+        fun initialize(context: Context) {
+            Thread {
+                //imagine that this is long work
+                Thread.sleep(3000)
+
+                runOnUiThread {
+                    Toast.makeText(context, "Notification was initialize", Toast.LENGTH_LONG).show()
+                }
+            }.start()
         }
     }
 }

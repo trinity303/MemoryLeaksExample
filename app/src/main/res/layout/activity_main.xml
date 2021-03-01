@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
         >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Hello"
-        android:textSize="30sp"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Hello"
+            android:textSize="30sp"
+            />
 
-    <TextView
-        android:id="@+id/activity_details_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:layout_marginBottom="12dp"
-        tools:text="Name"
-        />
+        <TextView
+            android:id="@+id/activity_main_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:textSize="25sp"
+            tools:text="Name"
+            />
 
         <Button
             android:id="@+id/activity_main_go_to_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Go to Details"
+            />
+
+        <Button
+            android:id="@+id/activity_main_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="calculate something"
+            />
+
+        <TextView
+            android:id="@+id/activity_details_calculate_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            tools:text="Calculate result"
             />
 
     </LinearLayout>
